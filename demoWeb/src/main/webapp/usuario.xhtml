@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+	<h:form>
+	<p:growl id="msg"/>
+		<p:panel header="Formulario de Usuario" id="pnPanelFormulario">
+			<h:panelGrid columns="2" border="0">
+				<p:outputLabel value="Cedula" />
+				<p:inputText id="txtCedula"
+					binding="#{usuarioVista.txtCedula}">
+					<p:ajax listener="#{usuarioVista.txtCedulaListener}" update="pnPanelFormulario"/>
+					</p:inputText>
+
+				<p:outputLabel value="Tipo Usuario" />
+				<p:selectOneMenu id="somTipoUsuario"
+					binding="#{usuarioVista.somTipoUsuario}">
+					<f:selectItem itemValue="-1" itemLabel="-SELECCIONE-" />
+					<f:selectItems value="#{usuarioVista.losTiposUsuariosItems}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Nombre" />
+				<p:inputText id="txtNombre" binding="#{usuarioVista.txtNombre}" />
+
+				<p:outputLabel value="Login" />
+				<p:inputText id="txtLogin"
+					binding="#{usuarioVista.txtLogin}" />
+
+				<p:outputLabel value="Clave" />
+				<p:inputText id="txtClave" binding="#{usuarioVista.txtClave}" />
+
+
+			</h:panelGrid>
+			<h:panelGrid columns="4" border="0">
+				<p:commandButton id="btnCrear" value="Crear" update="msg"
+					binding="#{usuarioVista.btnCrear}" disabled="true" action="#{usuarioVista.crearAction}"/>
+				<p:commandButton id="btnModificar" value="Modificar" update="msg"
+					binding="#{usuarioVista.btnModificar}" disabled="true" action="#{usuarioVista.modificarAction}"/>
+				<p:commandButton id="btnBorrar" value="Borrar" update="msg"
+					binding="#{usuarioVista.btnBorrar}" disabled="true" action="#{usuarioVista.borrarAction}"/>
+				<p:commandButton id="btnLimpiar" value="Limpiar" update="msg,pnPanelFormulario"
+					binding="#{usuarioVista.btnLimpiar}"  disabled="false" action="#{usuarioVista.limpiarAction}"/>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
