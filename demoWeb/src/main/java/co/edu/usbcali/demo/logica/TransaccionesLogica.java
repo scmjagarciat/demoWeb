@@ -19,6 +19,8 @@ import co.edu.usbcali.demo.modelo.Cuentas;
 import co.edu.usbcali.demo.modelo.Retiros;
 import co.edu.usbcali.demo.modelo.RetirosId;
 import co.edu.usbcali.demo.modelo.Usuarios;
+import co.edu.usbcali.demo.sqs.IConsignacionSQS;
+import co.edu.usbcali.demo.sqs.IRetiroSQS;
 
 @Service
 @Scope("singleton")
@@ -41,6 +43,11 @@ public class TransaccionesLogica implements ITransaccionesLogica {
 
 	@Autowired
 	IUsuarioLogica usuarioLogica;
+	/* Colas SQS AWS */
+	@Autowired
+	IRetiroSQS retiroSQS;
+	@Autowired
+	IConsignacionSQS consignacionSQS;
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -122,7 +129,10 @@ public class TransaccionesLogica implements ITransaccionesLogica {
 		cuenta.setCueSaldo(saldoNuevo);
 		cuentaLogica.modificar(cuenta);
 		log.debug(cuenta.getCueNumero() + " - " + cuenta.getCueSaldo());
-
+		
+		/* Enviar Mensaje SQS */
+		retiroSQS.grabarMensajeRetiro(retiros);
+		log.debug("Se envio mensaje retiro a AWS SQS");
 	}
 
 	@Override
@@ -198,6 +208,9 @@ public class TransaccionesLogica implements ITransaccionesLogica {
 		cuentaLogica.modificar(cuenta);
 		log.debug(cuenta.getCueNumero() + " - " + cuenta.getCueSaldo());
 
+		/* Enviar Mensaje SQS */
+		consignacionSQS.grabarMensajeConsignacion(consignaciones);
+		log.debug("Se envio mensaje consignacion a AWS SQS");
 	}
 
 }
