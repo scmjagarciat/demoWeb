@@ -48,7 +48,7 @@ public class RetiroSQS implements IRetiroSQS {
 		log.debug("Getting Started with Amazon SQS");
 
 		/* Construyendo mensaje */
-		DateFormat fecha = new SimpleDateFormat("yyyy/MM/dd");
+		DateFormat fecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		mensajeRetiro.setNumeroRetiro(retiros.getId().getRetCodigo());
 		mensajeRetiro.setNumeroCuenta(retiros.getId().getCueNumero());
 		mensajeRetiro.setFechaRetiro(fecha.format(retiros.getRetFecha()));

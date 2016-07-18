@@ -47,7 +47,7 @@ public class ConsignacionSQS implements IConsignacionSQS {
 		log.debug("Getting Started with Amazon SQS");
 
 		/* Construyendo mensaje */
-		DateFormat fecha = new SimpleDateFormat("yyyy/MM/dd");
+		DateFormat fecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		mensajeConsignacion.setNumeroConsignacion(consignaciones.getId().getConCodigo());
 		mensajeConsignacion.setNumeroCuenta(consignaciones.getId().getCueNumero());
 		mensajeConsignacion.setFechaConsignacion(fecha.format(consignaciones.getConFecha()));
