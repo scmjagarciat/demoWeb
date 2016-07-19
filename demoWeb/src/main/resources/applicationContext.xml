@@ -29,5 +29,11 @@
 	
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 	
-
+    <bean id="queueConsignacion" class="java.lang.String">
+        <constructor-arg value="https://sqs.us-west-2.amazonaws.com/436344657082/consignaciones"/>
+    </bean>
+    
+    <bean id="queueRetiro" class="java.lang.String">
+        <constructor-arg value="https://sqs.us-west-2.amazonaws.com/436344657082/retiros"/>
+    </bean>
 </beans>

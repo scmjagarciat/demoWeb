@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -28,10 +29,13 @@ public class RetiroSQS implements IRetiroSQS {
 
 	private static final Logger log = LoggerFactory.getLogger(RetiroSQS.class);
 
+	@Autowired
+	String queueRetiro; 
+	
 	@Override
 	public void grabarMensajeRetiro(Retiros retiros) throws Exception {
 
-		String qurl = "https://sqs.us-west-2.amazonaws.com/436344657082/retiros";
+		String qurl =queueRetiro.toString();
 		MensajeRetiro mensajeRetiro = new MensajeRetiro();
 		String mensajeRetiroJsonString = null;
 		AWSCredentials credentials = null;
