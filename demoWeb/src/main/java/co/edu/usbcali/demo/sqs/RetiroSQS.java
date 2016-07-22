@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClient;
@@ -38,10 +39,10 @@ public class RetiroSQS implements IRetiroSQS {
 		String qurl =queueRetiro.toString();
 		MensajeRetiro mensajeRetiro = new MensajeRetiro();
 		String mensajeRetiroJsonString = null;
-		AWSCredentials credentials = null;
+		BasicAWSCredentials credentials = null;
 		try {
-			credentials = new ProfileCredentialsProvider("default").getCredentials();
-		} catch (Exception e) {
+			credentials = new BasicAWSCredentials("AKIAJTHZM2W27YAZBMRA", "LsG/SGBblThgkCsMcCIp1AdZsBqIiwbjAw2ueYI0");
+} catch (Exception e) {
 			throw new AmazonClientException("Cannot load the credentials from the credential profiles file. "
 					+ "Please make sure that your credentials file is at the correct "
 					+ "location (/.aws/credentials), and is in valid format.", e);
