@@ -41,7 +41,8 @@ public class RetiroSQS implements IRetiroSQS {
 		String mensajeRetiroJsonString = null;
 		BasicAWSCredentials credentials = null;
 		try {
-			credentials = new BasicAWSCredentials("AKIAJTHZM2W27YAZBMRA", "LsG/SGBblThgkCsMcCIp1AdZsBqIiwbjAw2ueYI0");
+			//colocar usuario y clave del IAM a usar del AWS
+			credentials = new BasicAWSCredentials("123", "456");
 } catch (Exception e) {
 			throw new AmazonClientException("Cannot load the credentials from the credential profiles file. "
 					+ "Please make sure that your credentials file is at the correct "
